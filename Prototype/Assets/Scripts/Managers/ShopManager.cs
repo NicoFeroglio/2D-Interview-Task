@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinsText;
     private readonly byte _maxRowElements = 6;
 
+    [SerializeField] private Button shopkeeperButton, playerButton;
+    
     private Inventory _playerInventory, _shopkeeperInventory;
     private Inventory _currentInventory;
 
@@ -34,7 +37,7 @@ public class ShopManager : MonoBehaviour
         _playerInventory = GameManager.Instance.myPlayer.inventory;
         this._shopkeeperInventory = shopkeeperInventory;
 
-        SetOffer(_shopkeeperInventory);
+        shopkeeperButton.onClick.Invoke();
 
         _shop.SetActive(true);
     }
@@ -97,7 +100,7 @@ public class ShopManager : MonoBehaviour
 
             foreach (Transform element in row.transform)
             {
-                element.GetComponent<ShopElement>().SetShopElement(_currentInventory.elements[elementCount], _currentInventory == _playerInventory); //falta bloquear el boton
+                element.GetComponent<ShopElement>().SetShopElement(_currentInventory.elements[elementCount], elementCount, _currentInventory == _playerInventory);
                 elementCount++;
             }
         }
@@ -115,5 +118,29 @@ public class ShopManager : MonoBehaviour
             SetOffer(_playerInventory);
     }
 
+    public void ElementSold(Element element, int index, TransactionType transactionType)
+    {
+        if (transactionType == TransactionType.NPC_to_Player)
+        {
+            if (GameManager.Instance.myPlayer.CanBuy(element.buyPrice))
+            {
+                GameManager.Instance.myPlayer.RefreshCoins(-element.buyPrice);
+                _playerInventory.elements.Add(element);
+            }
+        }
+        else
+        {
+            GameManager.Instance.myPlayer.RefreshCoins(element.salePrice);
+            _playerInventory.elements.RemoveAt(index);
+            _currentInventory = null;
+            RequestSaleOffer();
+            _shopkeeperInventory.elements.Add(element);
+        }
+    }
+}
 
+public enum TransactionType
+{
+    Player_to_NPC,
+    NPC_to_Player
 }

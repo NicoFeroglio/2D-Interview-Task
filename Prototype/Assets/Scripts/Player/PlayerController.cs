@@ -8,7 +8,7 @@ public class PlayerController : Character
     [HideInInspector] public PlayerInputController inputController;
     private PlayerAnimatorController _animatorController;
     
-    public uint coins;
+    [Min(0)] public int coins;
     public byte speed;
     private bool _inAction;
 
@@ -70,5 +70,11 @@ public class PlayerController : Character
         {
             InteractionManager.Instance.ReleaseInteraction();
         }
+    }
+
+    public bool CanBuy(int price) => price <= coins;
+    public void RefreshCoins(int value)
+    {
+        coins += value;
     }
 }
