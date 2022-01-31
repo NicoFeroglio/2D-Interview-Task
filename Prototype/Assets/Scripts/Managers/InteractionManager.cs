@@ -18,11 +18,17 @@ public class InteractionManager : MonoBehaviour
     {
         _currentInteractable = interactable;
         _currentInteractable.OnStartContact();
+        MessageManager.Instance.ActivateInteractionFeedback();
     }
 
     public void ReleaseInteraction()
     {
         _currentInteractable.OnEndContact();
         _currentInteractable = null;
+    }
+
+    public void Interact(Action endInteractionCallback)
+    {
+        _currentInteractable.OnStartInteraction(endInteractionCallback);
     }
 }

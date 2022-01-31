@@ -8,9 +8,10 @@ public class MessageManager : MonoBehaviour
 {
     public static MessageManager Instance;
 
+    [SerializeField] private TextMeshProUGUI feedback;
+    [SerializeField] private GameObject interactableIcon;
     private GameObject _message;
     public float timeToClose;
-    [SerializeField] private TextMeshProUGUI feedback;
     private event Action OnUpdate = delegate {  };
     private bool _waitForClose;
     [SerializeField] private Vector2 offset;
@@ -32,12 +33,14 @@ public class MessageManager : MonoBehaviour
     public void CloseMessage()
     {
         _message.SetActive(false);
+        interactableIcon.SetActive(false);
     }
 
     public void CloseInTime(string currentFeedback)
     {
         feedback.text = currentFeedback;
         _waitForClose = true;
+        _message.SetActive(true);
         float time = timeToClose;
         
         OnUpdate = () =>
@@ -54,8 +57,14 @@ public class MessageManager : MonoBehaviour
         };
     }
 
+    public void ActivateInteractionFeedback()
+    {
+        interactableIcon.SetActive(true);
+    }
+    
     private void Update()
     {
         OnUpdate();
     }
+    
 }

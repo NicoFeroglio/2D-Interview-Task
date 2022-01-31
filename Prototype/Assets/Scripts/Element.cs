@@ -4,6 +4,6 @@
 public class Element : ScriptableObject
 {
     public Sprite sprite;
-    public uint price;
+    public uint purchasePrice, salePrice;
     public bool salable, buyable;
 }

@@ -12,6 +12,15 @@ public class PlayerInputController : MonoBehaviour
                 OnUpdate -= CheckMovementInputs;
         }
     }
+    public bool CanInteract {
+        set
+        {
+            if (value)
+                OnUpdate += CheckInteractionInput;
+            else
+                OnUpdate -= CheckInteractionInput;
+        }
+    }
     private Vector2 _input = Vector2.zero;
     private event Action OnUpdate = delegate {  };
     
@@ -27,6 +36,15 @@ public class PlayerInputController : MonoBehaviour
         _input.x = Input.GetAxisRaw("Horizontal");
         _input.y = Input.GetAxisRaw("Vertical");
         _playerController.Move(_input);
+    }
+
+    private void CheckInteractionInput()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            InteractionManager.Instance.Interact(()=> CanMove = true);
+            CanMove = CanInteract = false;
+        }
     }
     
     private void Update()

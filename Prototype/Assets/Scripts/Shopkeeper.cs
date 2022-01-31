@@ -1,19 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Shopkeeper : MonoBehaviour, Interactable
 {
     public List<Reaction> reactions;
+    private event Action OnFinishInteraction = delegate {  };
     
-    public void OnStartInteraction()
+    
+    public void OnStartInteraction(Action endCallback)
     {
-        
+        OnFinishInteraction = endCallback;
     }
 
     public void OnEndInteraction()
     {
-        
+        OnFinishInteraction();
     }
 
     public void OnStartContact()
