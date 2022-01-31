@@ -3,15 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Character
 {
-    private PlayerInputController _inputController;
+    [HideInInspector] public PlayerInputController inputController;
     private PlayerAnimatorController _animatorController;
     
-    public uint _coins;
-    public byte _speed;
+    public uint coins;
+    public byte speed;
     private bool _inAction;
-    private List<Element> _inventory = new List<Element>();
 
     private bool _onWalk;
     public bool OnWalk {
@@ -25,9 +24,10 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    
     private void Awake()
     {
-        _inputController = GetComponent<PlayerInputController>();
+        inputController = GetComponent<PlayerInputController>();
         _animatorController = new PlayerAnimatorController(GetComponentInChildren<Animator>());
     }
 
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         OnWalk = (dir != Vector3.zero);
         if (_onWalk)
         {
-            transform.position += dir.normalized * (Time.deltaTime * _speed);
+            transform.position += dir.normalized * (Time.deltaTime * speed);
             SetGraphicDirection(dir.x);
         }
     }

@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Shopkeeper : MonoBehaviour, Interactable
+public class Shopkeeper : Character, Interactable
 {
     public List<Reaction> reactions;
     private event Action OnFinishInteraction = delegate {  };
-    
+
     
     public void OnStartInteraction(Action endCallback)
     {
         OnFinishInteraction = endCallback;
+        ShopManager.Instance.OpenShop(inventory);
     }
 
     public void OnEndInteraction()

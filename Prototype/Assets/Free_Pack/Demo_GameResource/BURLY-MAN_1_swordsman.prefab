@@ -3619,8 +3619,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96951466a86d4ae4a9eaec8a39e6130a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coins: 0
-  _speed: 10
+  inventory: {fileID: 0}
+  coins: 0
+  speed: 6
 --- !u!114 &7681793593338156713
 MonoBehaviour:
   m_ObjectHideFlags: 0
