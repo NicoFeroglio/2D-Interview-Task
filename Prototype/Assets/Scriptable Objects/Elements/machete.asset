@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89346c56e3be4687bb51ce4a51bdfa1b, type: 3}
-  m_Name: espada
+  m_Name: machete
   m_EditorClassIdentifier: 
-  sprite: {fileID: -7749896262971762107, guid: 0ff1072ca699cab4f93f10ee4f5b9c25, type: 3}
-  buyPrice: 25
-  salePrice: 20
+  sprite: {fileID: -8871679589728615323, guid: 0ff1072ca699cab4f93f10ee4f5b9c25, type: 3}
+  buyPrice: 40
+  salePrice: 30
   salable: 1
   buyable: 1

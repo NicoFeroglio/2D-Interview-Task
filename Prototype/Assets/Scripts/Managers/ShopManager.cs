@@ -12,10 +12,10 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Transform elementsContainer;
     [SerializeField] private TextMeshProUGUI coinsText;
     private readonly byte _maxRowElements = 6;
-    
+
     private Inventory _playerInventory, _shopkeeperInventory;
-    
-    
+    private Inventory _currentInventory;
+
     private void Awake()
     {
         Instance = this;
@@ -33,12 +33,12 @@ public class ShopManager : MonoBehaviour
 
         _playerInventory = GameManager.Instance.myPlayer.inventory;
         this._shopkeeperInventory = shopkeeperInventory;
-        
+
         SetOffer(_shopkeeperInventory);
-        
+
         _shop.SetActive(true);
     }
-    
+
     public void CloseShop()
     {
         GameManager.Instance.myPlayer.inputController.CanMove = true;
@@ -46,20 +46,74 @@ public class ShopManager : MonoBehaviour
         _shop.SetActive(false);
     }
 
+    private bool ResetShop(Inventory nextInventory)
+    {
+        if(_currentInventory == nextInventory) return false;
+
+        int iterations = elementsContainer.childCount;
+        for (int i = 1; i < iterations; i++)
+            DestroyImmediate(elementsContainer.GetChild(0).gameObject);
+
+        Transform row = elementsContainer.GetChild(0);
+        iterations = row.childCount;
+        for (int i = 1; i < iterations; i++) 
+            DestroyImmediate(row.GetChild(0).gameObject);
+
+        return true;
+    }
+
     private void SetOffer(Inventory currentOffer)
     {
-        float temp = (currentOffer.elements.Count / 6f);
-        int rowsCount = (int)(temp + (1 - (temp % 1)));
-        Debug.Log(rowsCount);
+        _currentInventory = currentOffer;
         
-        GameObject prefab = elementsContainer.GetChild(0).gameObject;
+        float rowsCount = (_currentInventory.elements.Count / 6f);
 
+        GameObject rowPrefab = elementsContainer.GetChild(0).gameObject;
+        GameObject elementPrefab = rowPrefab.transform.GetChild(0).gameObject;
+
+        int count = _currentInventory.elements.Count - 2;
+        
         for (int i = 1; i < rowsCount; i++)
         {
-            Instantiate(prefab).transform.SetParent(elementsContainer);
+            var rowInstance = Instantiate(rowPrefab).transform;
+            rowInstance.SetParent(elementsContainer);
+            rowInstance.localScale = Vector3.one;
+
+            count--;
+        }
+
+        int elementCount = 0;
+        
+        foreach (Transform row in elementsContainer.transform)
+        {
+            for (int j = 1; j < _maxRowElements && count >= 0; j++)
+            {
+                var elementInstance = Instantiate(elementPrefab).transform;
+                elementInstance.SetParent(row);
+                elementInstance.localScale = Vector3.one;
+                
+                count--;
+            }
+
+            foreach (Transform element in row.transform)
+            {
+                element.GetComponent<ShopElement>().SetShopElement(_currentInventory.elements[elementCount], _currentInventory == _playerInventory); //falta bloquear el boton
+                elementCount++;
+            }
         }
     }
 
-    public void RequestBuyOffer() => SetOffer(_shopkeeperInventory);
-    public void RequestSaleOffer() => SetOffer(_playerInventory);
+    public void RequestBuyOffer()
+    {
+        if(ResetShop(_shopkeeperInventory))
+            SetOffer(_shopkeeperInventory);
+    }
+
+    public void RequestSaleOffer()
+    {
+        if(ResetShop(_playerInventory))
+            SetOffer(_playerInventory);
+    }
+
+
 }

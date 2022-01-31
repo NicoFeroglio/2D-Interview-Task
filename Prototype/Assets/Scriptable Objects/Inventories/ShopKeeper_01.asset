@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 20
   elements:
+  - {fileID: 11400000, guid: 86d635cc2311d4645b11812a4fb03a97, type: 2}
   - {fileID: 11400000, guid: c2ca67edac39ace41af7ea9e942c9093, type: 2}
   - {fileID: 11400000, guid: c2ca67edac39ace41af7ea9e942c9093, type: 2}
   - {fileID: 11400000, guid: c2ca67edac39ace41af7ea9e942c9093, type: 2}
@@ -27,5 +28,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2ca67edac39ace41af7ea9e942c9093, type: 2}
   - {fileID: 11400000, guid: c2ca67edac39ace41af7ea9e942c9093, type: 2}
   - {fileID: 11400000, guid: c2ca67edac39ace41af7ea9e942c9093, type: 2}
-  - {fileID: 11400000, guid: c2ca67edac39ace41af7ea9e942c9093, type: 2}
-  - {fileID: 11400000, guid: c2ca67edac39ace41af7ea9e942c9093, type: 2}
+  - {fileID: 11400000, guid: 86d635cc2311d4645b11812a4fb03a97, type: 2}
