@@ -10,10 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d202b6b2657d4791a98863b905074c54, type: 3}
-  m_Name: ShopKeeper_01
+  m_Name: ShopKeeper_03
   m_EditorClassIdentifier: 
   size: 20
   elements:
+  - {fileID: 11400000, guid: 0c9985b695ddee340a1da852e6a2e2bd, type: 2}
+  - {fileID: 11400000, guid: d4c783c256488184ebbff3ff40a613ec, type: 2}
+  - {fileID: 11400000, guid: cbbb2255289cd5b4b853c1455404b12f, type: 2}
+  - {fileID: 11400000, guid: 86d635cc2311d4645b11812a4fb03a97, type: 2}
+  - {fileID: 11400000, guid: eafa89c77bbf5334b95dad91aa30eef4, type: 2}
+  - {fileID: 11400000, guid: 3b623b37a3a86ff4ca3e258b2758a031, type: 2}
+  - {fileID: 11400000, guid: c2ca67edac39ace41af7ea9e942c9093, type: 2}
+  - {fileID: 11400000, guid: 68298e5d25425aa44af6999b2dc70d16, type: 2}
+  - {fileID: 11400000, guid: 0d8dc3eb9ced4e441ac61971be1d14dc, type: 2}
+  - {fileID: 11400000, guid: 81b5a3873437c8441abc7b105bfe0275, type: 2}
   - {fileID: 11400000, guid: 8288ab35d398e0442b4d83a11dd53f46, type: 2}
   - {fileID: 11400000, guid: 243bfd9c86d2a554cb9ccb71a2b9a6ab, type: 2}
   - {fileID: 11400000, guid: 3efb238c6a1b9b8489b777ddd5dc1434, type: 2}

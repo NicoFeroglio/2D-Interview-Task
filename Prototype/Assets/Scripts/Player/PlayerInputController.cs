@@ -21,6 +21,15 @@ public class PlayerInputController : MonoBehaviour
                 OnUpdate -= CheckInteractionInput;
         }
     }
+    public bool CanOpenInventory {
+        set
+        {
+            if (value)
+                OnUpdate += CheckInventoryInput;
+            else
+                OnUpdate -= CheckInventoryInput;
+        }
+    }
     private Vector2 _input = Vector2.zero;
     private event Action OnUpdate = delegate {  };
     
@@ -29,6 +38,7 @@ public class PlayerInputController : MonoBehaviour
     {
         _playerController = GetComponent<PlayerController>();
         CanMove = true;
+        CanOpenInventory = true;
     }
 
     private void CheckMovementInputs()
@@ -43,6 +53,15 @@ public class PlayerInputController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             InteractionManager.Instance.Interact(()=> CanMove = true);
+            CanMove = CanInteract = CanOpenInventory = false;
+        }
+    }
+
+    private void CheckInventoryInput()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            InventoryManager.Instance.OpenInventory(_playerController.inventory);
             CanMove = CanInteract = false;
         }
     }

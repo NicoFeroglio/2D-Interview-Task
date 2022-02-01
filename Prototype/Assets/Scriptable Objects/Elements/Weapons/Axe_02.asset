@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89346c56e3be4687bb51ce4a51bdfa1b, type: 3}
-  m_Name: machete
+  m_Name: Axe_02
   m_EditorClassIdentifier: 
-  sprite: {fileID: -8871679589728615323, guid: 0ff1072ca699cab4f93f10ee4f5b9c25, type: 3}
-  buyPrice: 40
-  salePrice: 30
+  type: 0
+  sprite: {fileID: -6661497287386164530, guid: 0ff1072ca699cab4f93f10ee4f5b9c25, type: 3}
+  buyPrice: 30
+  salePrice: 15
   salable: 1
   buyable: 1

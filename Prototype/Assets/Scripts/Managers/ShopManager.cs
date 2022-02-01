@@ -5,11 +5,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour
+public class ShopManager : BaseWindow
 {
     public static ShopManager Instance;
 
-    private GameObject _shop;
     [SerializeField] private Transform elementsContainer;
     [SerializeField] private TextMeshProUGUI coinsText;
     private readonly byte _maxRowElements = 6;
@@ -19,10 +18,16 @@ public class ShopManager : MonoBehaviour
     private Inventory _playerInventory, _shopkeeperInventory;
     private Inventory _currentInventory;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Instance = this;
-        _shop = transform.GetChild(0).gameObject;
+    }
+
+    public override void Close()
+    {
+        base.Close();
+        GameManager.Instance.myPlayer.inputController.CanOpenInventory = true;
     }
 
     public void SetCoins(float coins)
@@ -39,16 +44,9 @@ public class ShopManager : MonoBehaviour
 
         shopkeeperButton.onClick.Invoke();
 
-        _shop.SetActive(true);
+        Window.SetActive(true);
     }
-
-    public void CloseShop()
-    {
-        GameManager.Instance.myPlayer.inputController.CanMove = true;
-        GameManager.Instance.myPlayer.inputController.CanInteract = true;
-        _shop.SetActive(false);
-    }
-
+    
     private bool ResetShop(Inventory nextInventory)
     {
         if(_currentInventory == nextInventory) return false;

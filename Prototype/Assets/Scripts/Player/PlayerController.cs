@@ -23,6 +23,8 @@ public class PlayerController : Character
             }
         }
     }
+
+    public Equipment defaultEquipment, currentEquipment;
     
     
     private void Awake()
