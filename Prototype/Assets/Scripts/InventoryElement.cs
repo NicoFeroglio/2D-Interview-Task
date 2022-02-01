@@ -9,11 +9,11 @@ public class InventoryElement : MonoBehaviour
     [SerializeField] private Image icon;
     [SerializeField] private Button button;
     
-    private Element _currentElement;
+    [HideInInspector] public Element currentElement;
     
     public void SetInventoryElement(Element element)
     {
-        _currentElement = element;
+        currentElement = element;
         icon.sprite = element.icon;
         button.interactable = !element.equiped;
     }
@@ -21,5 +21,11 @@ public class InventoryElement : MonoBehaviour
     public void Equip()
     {
         button.interactable = false;
+        InventoryManager.Instance.TryEquipElement(this);
+    }
+
+    public void Unequip()
+    {
+        button.interactable = true;
     }
 }

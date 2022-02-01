@@ -19,6 +19,13 @@ public class InventoryManager : BaseWindow
         Instance = this;
     }
 
+    public override void Close()
+    {
+        base.Close();
+        ResetInventory();
+        GameManager.Instance.myPlayer.inputController.CanOpenInventory = true;
+    }
+
     public void OpenInventory(Inventory inventory, Equipment defaultEquipment, Equipment currentEquipment)
     {
         coins.text = GameManager.Instance.myPlayer.coins.ToString();
@@ -63,13 +70,25 @@ public class InventoryManager : BaseWindow
         }
     }
 
-    public void TryEquipElement(Element element)
+    private void ResetInventory()
+    {
+        int iterations = elementsContainer.childCount;
+        for (int i = 1; i < iterations; i++)
+            DestroyImmediate(elementsContainer.GetChild(0).gameObject);
+
+        Transform row = elementsContainer.GetChild(0);
+        iterations = row.childCount;
+        for (int i = 1; i < iterations; i++) 
+            DestroyImmediate(row.GetChild(0).gameObject);
+    }
+    
+    public void TryEquipElement(InventoryElement inventoryElement)
     {
         for (int i = 0; i < equipedElements.Count; i++)
         {
-            if (equipedElements[i].VerifyMatchElementType(element.type))
+            if (equipedElements[i].VerifyMatchElementType(inventoryElement.currentElement.type))
             {
-                equipedElements[i].SetEquipedElement(element);
+                equipedElements[i].EquipElement(inventoryElement);
                 break;
             }
         }
