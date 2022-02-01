@@ -35,7 +35,6 @@ public class Equipment : ScriptableObject
             if (!found)
             {
                 equipments[i].element = defaultEquipment.equipments[i].element;
-                //se tiene que actualizar el sprite del personaje
             }
         }
     }

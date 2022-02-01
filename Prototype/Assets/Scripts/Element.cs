@@ -7,7 +7,7 @@ public class Element : ScriptableObject
     public Sprite sprite, icon;
     [Min(1)] public int buyPrice, salePrice;
     public bool salable, buyable;
-    [HideInInspector] public bool equiped;
+    public bool equiped;
 }
 
 public enum ElementType

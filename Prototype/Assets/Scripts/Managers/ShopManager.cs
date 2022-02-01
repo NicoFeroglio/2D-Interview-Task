@@ -45,6 +45,7 @@ public class ShopManager : BaseWindow
         shopkeeperButton.onClick.Invoke();
 
         Window.SetActive(true);
+        bg.SetActive(true);
     }
     
     private bool ResetShop(Inventory nextInventory)
@@ -137,6 +138,8 @@ public class ShopManager : BaseWindow
                 GameManager.Instance.myPlayer.defaultEquipment,
                 GameManager.Instance.myPlayer.inventory);
         }
+        
+        SetCoins(GameManager.Instance.myPlayer.coins);
     }
 }
 

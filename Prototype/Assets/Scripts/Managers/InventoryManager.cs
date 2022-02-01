@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 
@@ -12,6 +13,8 @@ public class InventoryManager : BaseWindow
     private readonly int _maxRowsElement = 4;
     
     public List<EquipedElement> equipedElements = new List<EquipedElement>();
+    public List<InventoryElement> inventoryElements = new List<InventoryElement>();
+    
     
     protected override void Awake()
     {
@@ -28,12 +31,38 @@ public class InventoryManager : BaseWindow
 
     public void OpenInventory(Inventory inventory, Equipment defaultEquipment, Equipment currentEquipment)
     {
+        inventoryElements.Clear();
+        
         coins.text = GameManager.Instance.myPlayer.coins.ToString();
         SetInventory(inventory);
         currentEquipment.VerifyEquipmentIntegrity(defaultEquipment, inventory);
+        RefreshEquipedElements(defaultEquipment);
+        
         Window.SetActive(!Window.activeSelf);
+        bg.SetActive(true);
     }
 
+    /// <summary>
+    /// Equip on the character panel.
+    /// </summary>
+    private void RefreshEquipedElements(Equipment defaultEquipment)
+    {
+        foreach (var iElement in inventoryElements)
+        {
+            if (iElement.currentElement.equiped)
+            {
+                foreach (var equipedSlot in equipedElements)
+                {
+                    if (equipedSlot.type == iElement.currentElement.type)
+                    {
+                        TryEquipElement(iElement);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
     private void SetInventory(Inventory currentInventory)
     {
         float rowsCount = (currentInventory.elements.Count / (float)_maxRowsElement);
@@ -66,7 +95,11 @@ public class InventoryManager : BaseWindow
             }
 
             for (int i = 0; i < row.childCount; i++)
-                row.GetChild(i).GetComponent<InventoryElement>().SetInventoryElement(currentInventory.elements[elementCount++]);
+            {
+                InventoryElement current = row.GetChild(i).GetComponent<InventoryElement>();
+                current.SetInventoryElement(currentInventory.elements[elementCount++]);
+                inventoryElements.Add(current);
+            }
         }
     }
 
@@ -89,6 +122,7 @@ public class InventoryManager : BaseWindow
             if (equipedElements[i].VerifyMatchElementType(inventoryElement.currentElement.type))
             {
                 equipedElements[i].EquipElement(inventoryElement);
+                GameManager.Instance.myPlayer.UseCloth(inventoryElement.currentElement);
                 break;
             }
         }

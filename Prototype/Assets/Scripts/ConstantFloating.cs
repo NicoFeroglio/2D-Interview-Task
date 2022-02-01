@@ -25,7 +25,6 @@ public class ConstantFloating : MonoBehaviour
     public void Update()
     {
         _time += Time.deltaTime * speed * Mathf.PI;
-        //transform.localPosition = _offset + Mathf.Sin(_time) * height * Vector3.up;
         if (horizontal)
             transform.localPosition = new Vector3(_offset.x + Mathf.Sin(_time) * height, transform.localPosition.y, transform.localPosition.z);
         else

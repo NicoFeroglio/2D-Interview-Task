@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class BaseWindow : MonoBehaviour
 {
+    [SerializeField] protected GameObject bg;
     protected GameObject Window;
 
     protected virtual void Awake()
@@ -17,5 +18,6 @@ public abstract class BaseWindow : MonoBehaviour
         GameManager.Instance.myPlayer.inputController.CanMove = true;
         GameManager.Instance.myPlayer.inputController.CanInteract = true;
         Window.SetActive(false);
+        bg.SetActive(false);
     }
 }

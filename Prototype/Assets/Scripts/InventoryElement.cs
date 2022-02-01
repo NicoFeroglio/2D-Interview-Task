@@ -21,6 +21,7 @@ public class InventoryElement : MonoBehaviour
     public void Equip()
     {
         button.interactable = false;
+        currentElement.equiped = true;
         InventoryManager.Instance.TryEquipElement(this);
     }
 

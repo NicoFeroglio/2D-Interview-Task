@@ -60,10 +60,13 @@ public class PlayerInputController : MonoBehaviour
     private void CheckInventoryInput()
     {
         if (Input.GetKeyDown(KeyCode.I))
-        {
-            _playerController.RequestInventory();
-            CanMove = CanInteract = CanOpenInventory = false;
-        }
+            CallInventory();
+    }
+
+    public void CallInventory()
+    {
+        _playerController.RequestInventory();
+        CanMove = CanInteract = CanOpenInventory = false;
     }
     
     private void Update()
