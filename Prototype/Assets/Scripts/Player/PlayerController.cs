@@ -79,4 +79,9 @@ public class PlayerController : Character
     {
         coins += value;
     }
+
+    public void RequestInventory()
+    {
+        InventoryManager.Instance.OpenInventory(inventory, defaultEquipment, currentEquipment);
+    }
 }

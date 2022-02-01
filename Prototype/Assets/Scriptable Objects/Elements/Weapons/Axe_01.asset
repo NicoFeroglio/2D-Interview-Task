@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   sprite: {fileID: 4312990573005262173, guid: 0ff1072ca699cab4f93f10ee4f5b9c25, type: 3}
+  icon: {fileID: 21300000, guid: ff0e75967a6656e45a5be77c80d704c7, type: 3}
   buyPrice: 20
   salePrice: 12
   salable: 1
   buyable: 1
+  equiped: 0

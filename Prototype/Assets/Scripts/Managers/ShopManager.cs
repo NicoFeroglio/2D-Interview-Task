@@ -67,7 +67,7 @@ public class ShopManager : BaseWindow
     {
         _currentInventory = currentOffer;
         
-        float rowsCount = (_currentInventory.elements.Count / 6f);
+        float rowsCount = (_currentInventory.elements.Count / (float)_maxRowElements);
 
         GameObject rowPrefab = elementsContainer.GetChild(0).gameObject;
         GameObject elementPrefab = rowPrefab.transform.GetChild(0).gameObject;
@@ -133,6 +133,9 @@ public class ShopManager : BaseWindow
             _currentInventory = null;
             RequestSaleOffer();
             _shopkeeperInventory.elements.Add(element);
+            GameManager.Instance.myPlayer.currentEquipment.VerifyEquipmentIntegrity(
+                GameManager.Instance.myPlayer.defaultEquipment,
+                GameManager.Instance.myPlayer.inventory);
         }
     }
 }

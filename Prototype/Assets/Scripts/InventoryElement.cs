@@ -10,17 +10,16 @@ public class InventoryElement : MonoBehaviour
     [SerializeField] private Button button;
     
     private Element _currentElement;
-
+    
     public void SetInventoryElement(Element element)
     {
         _currentElement = element;
-        icon.sprite = element.sprite;
-        button.interactable = !element.Equiped;
+        icon.sprite = element.icon;
+        button.interactable = !element.equiped;
     }
 
     public void Equip()
     {
         button.interactable = false;
-        //lo equipo en el personaje
     }
 }

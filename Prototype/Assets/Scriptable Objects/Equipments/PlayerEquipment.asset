@@ -12,33 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ee4db1aece45f2b79e31e83b46a1f4, type: 3}
   m_Name: PlayerEquipment
   m_EditorClassIdentifier: 
-  weapon:
-    element: {fileID: 11400000, guid: cadd35dfa4323d149b3ae889442a8d6b, type: 2}
+  equipments:
+  - element: {fileID: 11400000, guid: cadd35dfa4323d149b3ae889442a8d6b, type: 2}
     type: 0
-  ear:
-    element: {fileID: 11400000, guid: 13201e91739911141a64443d1187f8c8, type: 2}
+  - element: {fileID: 11400000, guid: 13201e91739911141a64443d1187f8c8, type: 2}
     type: 1
-  hair:
-    element: {fileID: 11400000, guid: a45f9da732c594b4887eb33e91fbe9ad, type: 2}
+  - element: {fileID: 11400000, guid: a45f9da732c594b4887eb33e91fbe9ad, type: 2}
     type: 2
-  topWear:
-    element: {fileID: 11400000, guid: acdb9a5e74fa09743a3c3c1c453c5505, type: 2}
+  - element: {fileID: 11400000, guid: acdb9a5e74fa09743a3c3c1c453c5505, type: 2}
     type: 3
-  shoulderWear:
-    element: {fileID: 11400000, guid: 9bee3e23899a6de478cdc1ebce87995b, type: 2}
+  - element: {fileID: 11400000, guid: 9bee3e23899a6de478cdc1ebce87995b, type: 2}
     type: 4
-  shoulderTattoo:
-    element: {fileID: 11400000, guid: 99a456fdbf3399141ae6df71804a66b7, type: 2}
+  - element: {fileID: 11400000, guid: 99a456fdbf3399141ae6df71804a66b7, type: 2}
     type: 5
-  bottomWear:
-    element: {fileID: 11400000, guid: 65a274e3c8f5d984cb62f120c1999a39, type: 2}
+  - element: {fileID: 11400000, guid: 65a274e3c8f5d984cb62f120c1999a39, type: 2}
     type: 6
-  armWear:
-    element: {fileID: 11400000, guid: 92143942d01189c4593f071dacd82732, type: 2}
+  - element: {fileID: 11400000, guid: 92143942d01189c4593f071dacd82732, type: 2}
     type: 7
-  legWear:
-    element: {fileID: 11400000, guid: c5fa55996e2d35e4c9efd6d71d782119, type: 2}
+  - element: {fileID: 11400000, guid: c5fa55996e2d35e4c9efd6d71d782119, type: 2}
     type: 8
-  footWear:
-    element: {fileID: 11400000, guid: d08c0c299945bd94485bf18d40a33719, type: 2}
+  - element: {fileID: 11400000, guid: d08c0c299945bd94485bf18d40a33719, type: 2}
     type: 9

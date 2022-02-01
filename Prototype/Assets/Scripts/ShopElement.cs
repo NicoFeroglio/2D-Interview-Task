@@ -19,7 +19,7 @@ public class ShopElement : MonoBehaviour
         _currentElement = element;
         _elementIndex = index;
         
-        icon.sprite = element.sprite;
+        icon.sprite = element.icon;
         if (isSelling)
         {
             button.interactable = element.salable;

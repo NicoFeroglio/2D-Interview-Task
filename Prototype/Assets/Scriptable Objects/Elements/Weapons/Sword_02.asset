@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89346c56e3be4687bb51ce4a51bdfa1b, type: 3}
   m_Name: Sword_02
   m_EditorClassIdentifier: 
+  type: 0
   sprite: {fileID: -7749896262971762107, guid: 0ff1072ca699cab4f93f10ee4f5b9c25, type: 3}
+  icon: {fileID: 21300000, guid: 902f1732cf1526142aa6b482a46d6164, type: 3}
   buyPrice: 25
   salePrice: 20
   salable: 1
   buyable: 1
+  equiped: 0

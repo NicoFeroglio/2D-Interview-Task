@@ -4,10 +4,10 @@
 public class Element : ScriptableObject
 {
     public ElementType type;
-    public Sprite sprite;
+    public Sprite sprite, icon;
     [Min(1)] public int buyPrice, salePrice;
     public bool salable, buyable;
-    public bool Equiped { get; private set; }
+    [HideInInspector] public bool equiped;
 }
 
 public enum ElementType
@@ -15,11 +15,11 @@ public enum ElementType
     Weapon,
     Ear,
     Hair,
-    Top_Wear,
-    Shoulder_Wear,
-    Shoulder_Tattoo,
-    Bottom_Wear,
-    Arm_Wear,
-    Leg_Wear,
-    Foot_Wear
+    TopWear,
+    ShoulderWear,
+    ShoulderTattoo,
+    BottomWear,
+    ArmWear,
+    LegWear,
+    FootWear
 }

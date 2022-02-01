@@ -61,7 +61,7 @@ public class PlayerInputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            InventoryManager.Instance.OpenInventory(_playerController.inventory);
+            _playerController.RequestInventory();
             CanMove = CanInteract = false;
         }
     }
